@@ -1,0 +1,28 @@
+{
+  "_comment": "EmareCloud Deploy Manifesti — Bu dosya EmareCloud paneli tarafından okunur. Manuel değiştirme.",
+  "slug": "emare-token",
+  "name": "Emare Token",
+  "github_repo": "emraresoftware/emare-token",
+  "branch": "main",
+  "dc": "local",
+  "server_host": "",
+  "server_ssh_port": 22,
+  "remote_path": "/opt/emare-token",
+  "stack": "python-gunicorn",
+  "port": 8329,
+  "webroot": "/opt/emare-token",
+  "domain": "",
+  "pre_deploy": [],
+  "deploy_commands": [
+    "cd /opt/emare-token",
+    "git pull origin main",
+    "source venv/bin/activate",
+    "pip install -r requirements.txt --quiet",
+    "systemctl restart emare-token"
+  ],
+  "restart_command": "systemctl restart emare-token",
+  "health_check_url": "http://localhost:8329",
+  "webhooks_enabled": true,
+  "auto_deploy_on_push": true,
+  "notify_on_fail": true
+}
